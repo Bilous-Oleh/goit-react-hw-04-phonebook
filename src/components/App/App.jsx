@@ -38,7 +38,7 @@ const App = () => {
     setContacts(contacts => [...contacts, contactData]);
   };
 
-  const getContact = () => {
+  const getFilteredContact = () => {
     return contacts.filter(contact =>
       contact.name.toLowerCase().includes(filter.toLowerCase())
     );
@@ -52,12 +52,14 @@ const App = () => {
     setFilter(event.currentTarget.value);
   };
 
+  const filterdContacts = getFilteredContact();
+
   return (
     <div>
       <PhonebookForm onSubmit={addContact}></PhonebookForm>
       <Filter value={filter} onChange={handleFilter} />
       <ContactList
-        contacts={getContact()}
+        contacts={filterdContacts}
         onDelete={deleteContact}
       ></ContactList>
       <ToastContainer />
